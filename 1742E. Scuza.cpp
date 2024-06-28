@@ -59,6 +59,62 @@ void solve()
     cout<<endl;
     STFU
 }
+//second solution using upperbound binary search algorithm 
+bool valid(ll stair,ll height)
+{
+    return height>=stair;
+}
+void solve2()
+{
+    ll n,q;cin>>n>>q;
+ 
+    vi v(n);
+    vi prefix(n);
+    vi stairs;
+ 
+    cin>>v[0];
+    prefix[0]=v[0];
+ 
+    ll Max=v[0];
+    stairs.push_back(Max);
+    loop(1,n)
+    {
+        cin>>v[i];
+        Max= max(Max,v[i]);
+        stairs.push_back(Max);
+        prefix[i] = prefix[i - 1] + v[i];
+    }
+ 
+    vi height(q);
+    input(height)
+//    4 5
+//    1 2 1 5
+//    1 2 4 9 10
+ 
+//    1 4 4 9 9
+    loop(0,q) {
+        if(stairs[0]>height[i]) {
+            cout << 0 << ' ';
+            continue;
+        }
+        if(stairs[n-1]<=height[i]) {
+            cout << prefix[n - 1] << ' ';
+            continue;
+        }
+        ll left = 0, right = n-1, mid;
+        while (right - left > 1)
+        {
+            mid = (left + right) / 2;
+            if (valid(stairs[mid], height[i]))
+                left = mid;
+            else
+                right = mid;
+        }
+        cout << prefix[left] << ' ';
+    }
+    cout<<endl;
+    STFU
+}
 int main()
 {
     SerajOmar
