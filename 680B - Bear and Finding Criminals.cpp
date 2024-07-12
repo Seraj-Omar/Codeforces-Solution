@@ -46,6 +46,7 @@ void solve()
     ll counter=0;
     if(v[a])
         counter++;
+ 
     ll right=a+1,left=a-1;
     while (left>=0&&right<n)
     {
