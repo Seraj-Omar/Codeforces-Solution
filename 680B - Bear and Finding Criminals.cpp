@@ -43,11 +43,10 @@ void solve()
     input(v)
 
     a--;
-    ll counter=0,right=a,left=a;
+    ll counter=0;
     if(v[a])
         counter++;
-
-    right++;left--;
+    ll right=a+1,left=a-1;
     while (left>=0&&right<n)
     {
 
