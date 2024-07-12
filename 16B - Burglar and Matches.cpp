@@ -46,10 +46,10 @@ void solve()
     loop(0,m)
     {
         cin>>a>>b;
-        v[i].first=b;v[i].second=a;
+        v[i]=make_pair(b,a);
     }
     std::sort(v.begin(), v.end(),greater());
-    ll counter=0,index=0,matches=0;
+    ll index=0,matches=0;
     while(true)
     {
         if(n==0||(index==m-1&&v[index].second==0))
@@ -58,14 +58,12 @@ void solve()
         if(v[index].second<=n&&v[index].second!=0)
         {
             matches+=(v[index].first*v[index].second);
-            counter+=v[index].second;
             n-=v[index].second;
-            index++;
+            v[index].second=0;
         }
         else if(v[index].second>n)
         {
             matches+=(v[index].first*n);
-            counter+=n;
             n=0;
         }
         else
