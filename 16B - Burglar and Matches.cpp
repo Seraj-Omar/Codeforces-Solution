@@ -60,14 +60,13 @@ void solve()
             matches+=(v[index].first*v[index].second);
             counter+=v[index].second;
             n-=v[index].second;
-            v[index].second=0;
+            index++;
         }
         else if(v[index].second>n)
         {
             matches+=(v[index].first*n);
             counter+=n;
             n=0;
-            v[index].second=0;
         }
         else
             index++;
