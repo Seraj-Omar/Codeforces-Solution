@@ -39,26 +39,24 @@ using namespace std;
 void solve()
 {
     string s;
-    map<char,ll>map;
+    map<char,ll>m;
     loop(0,3)
     {
         cin>>s;
         if(s[1]=='>')
-            map[s[0]]++;
+            m[s[0]]++;
         else
-            map[s[2]]++;
+            m[s[2]]++;
     }
-    if(map['A']&&map['B']&&map['C'])
+    if(m['A']&&m['B']&&m['C'])
         cout<<"Impossible"<<endd;
     else
     {
-        vp(ll,char)v;
-        v.pb(make_pair(map['A'],'A'));
-        v.pb(make_pair(map['B'],'B'));
-        v.pb(make_pair(map['C'],'C'));
+        map<ll,char>mp;
+        for(auto i:m)
+            mp.insert(make_pair(i.second,i.first));
 
-        std::sort(v.begin(), v.end());
-        for(auto i:v)
+        for(auto i:mp)
             cout<<i.second;
         cout<<endd;
     }
