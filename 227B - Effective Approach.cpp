@@ -51,10 +51,8 @@ void solve()
     while(m--)
     {
         cin>>x;
-        auto it=mp.find(x);
-        ll index=it->second;
-       begin+=index+1;
-       end+=n-index;
+        begin+=mp[x]+1;
+        end+=n-mp[x];
     }
     cout<<begin<<' '<<end<<endd;
     SEEYAH
