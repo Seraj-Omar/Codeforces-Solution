@@ -27,10 +27,10 @@
 #define yes  cout<<"YES\n";
 #define no  cout<<"NO\n";
 #define input(n)    for(auto& i:n)cin>>i;
-#define loop(from,to)   for(int i=from;i<to;i++)
-#define loopr(from,to)   for(int i=from;i>=to;--i)
-#define loop2(from2,to2)   for(int j=from2;j<to2;j++)
-#define loop3(from3,to3)   for(int k=from3;k<to3;k++)
+#define loop(from,to)   for(ll i=from;i<to;i++)
+#define loopr(from,to)   for(ll i=from;i>=to;--i)
+#define loop2(from2,to2)   for(ll j=from2;j<to2;j++)
+#define loop3(from3,to3)   for(ll k=from3;k<to3;k++)
 #define all(v)  v.begin(),v.end()
 #define is(x) cout<<((x)?"Yes\n":"No\n");
 #define endd    '\n'
@@ -40,11 +40,11 @@ using namespace std;
 void solve()
 {
     ll n,k;cin>>n>>k;
-    ve(ll)v(n);
-    cin>>v[0];
-    loop(1,n) {
+    ve(ll)v(n+1);
+    loop(1,n+1)
+    {
         cin>>v[i];
-        v[i] += v[i - 1];
+        v[i]+=v[i-1];
     }
 
     if(n==1||n==k)
@@ -52,15 +52,16 @@ void solve()
         cout<<1<<endd;
         SEEYAH
     }
-    ll Min=LONG_LONG_MAX,index=-1;
-    for (int i = 0; i < n-k+1; i++)
+    ll Min=LONG_LONG_MAX,index=1;
+    loop(1,n-k+2)
     {
-        if(Min>v[i+k-1]-v[i-1]) {
+        if(Min>v[i+k-1]-v[i-1])
+        {
             Min = v[i + k - 1] - v[i - 1];
             index = i;
         }
     }
-    cout<<index+1<<endd;
+    cout<<index<<endd;
     SEEYAH
 }
 int main()
