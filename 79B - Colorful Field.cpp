@@ -45,7 +45,6 @@ void solve()
     cin>>n>>m>>k>>t;
 
     ve(ll)v;
-    map<char,string>cell{{'w',"Waste"},{'c',"Carrots"},{'k',"Kiwis"},{'g',"Grapes"}};
 
     ll l,r;
     loop(0,k)
@@ -54,9 +53,13 @@ void solve()
         l--;r--;
         v.push_back(l*m+r);
     }
+ 
     sort(all(v));
     set<ll>st(all(v));
+ 
+    map<char,string>cell{{'w',"Waste"},{'c',"Carrots"},{'k',"Kiwis"},{'g',"Grapes"}};
     string s="ckg";
+ 
     while(t--)
     {
         ll counter=0;
@@ -64,7 +67,7 @@ void solve()
         l--;r--;
         if(st.find(l*m+r)!=st.end())
             cout<<"Waste"<<endd;
-
+         
         else
         {
             loop(0,v.size())
