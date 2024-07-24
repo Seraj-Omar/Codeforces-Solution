@@ -41,11 +41,37 @@ using namespace std;
 //vp(int,int) directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 void solve()
 {
-    ll n,k;cin>>n>>k;
-    if(k==0)
-        cout<<0<<endd;
-    else
-        cout<<ceil(k/n)<<endd;
+   string s,word;cin>>s;
+   string alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   if(s.size()<26)
+   {
+       cout<<-1<<endd;
+       SEEYAH
+   }
+   else
+   {
+       loop(0,s.size())
+       {
+           word=s.substr(i,26);
+           ll counter=std::count(word.begin(), word.end(),'?');
+           set<char>st(all(word));
+           if(st.size()+counter-1==26||st.size()==26&&counter==0)
+           {
+               loop2(0,26)
+               {
+                    if(word.find(alphabet[j])==string::npos)
+                        word[word.find('?')]=alphabet[j];
+               }
+               s.replace(i, 26, word);
+               loop2(0,s.size())
+                if(s[j]=='?')
+                    s[j]='A';
+               cout<<s<<endd;
+               SEEYAH
+           }
+       }
+       cout << -1 << endd;
+   }
 }
 int main()
 {
@@ -53,7 +79,7 @@ int main()
 //    freopen("input.txt", "r", stdin);
 //    freopen("output.txt", "w", stdout);
     ll t=1;
-    cin>>t;
+//    cin>>t;
     while (t--){solve();}
     BYE
 }
