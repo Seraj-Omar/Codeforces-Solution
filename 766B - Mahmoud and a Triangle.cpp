@@ -33,7 +33,7 @@
 #define loop2(from2,to2)   for(int j=from2;j<to2;j++)
 #define loop3(from3,to3)   for(int k=from3;k<to3;k++)
 #define all(v)  v.begin(),v.end()
-#define is(x) cout<<((x)?"Yes\n":"No\n");
+#define is(x) cout<<((x)?"YES\n":"NO\n");
 #define endd    '\n'
 #define SEEYAH    return;
 #define BYE       return 0;
@@ -41,11 +41,23 @@ using namespace std;
 //vp(int,int) directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 void solve()
 {
-    ll n,k;cin>>n>>k;
-    if(k==0)
-        cout<<0<<endd;
-    else
-        cout<<ceil(k/n)<<endd;
+   ll n;cin>>n;
+    ve(ll)v(n);
+    input(v)
+    std::sort(v.begin(), v.end());
+
+    ll a=0,b=1,c=2;
+    bool can=false;
+    while(c<n)
+    {
+        if(v[a]+v[b]>v[c]&&v[a]+v[c]>v[b]&&v[c]+v[b]>v[a]) {
+            can = true;
+            break;
+        }
+        else
+            a++;b++;c++;
+    }
+    is(can)
 }
 int main()
 {
@@ -53,7 +65,7 @@ int main()
 //    freopen("input.txt", "r", stdin);
 //    freopen("output.txt", "w", stdout);
     ll t=1;
-    cin>>t;
+//    cin>>t;
     while (t--){solve();}
     BYE
 }
