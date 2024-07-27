@@ -2,7 +2,6 @@
  بسم الله الرحمن الرحيم
 
  Code by SerajOmar :)
- Solution begin at line 70
 
      ███████ ███████ ██████   █████      ██████
      ██      ██      ██   ██ ██   ██       ██
@@ -50,23 +49,10 @@
 #define BYE       return 0;
 using namespace std;
 vp directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
-bool valid(ll i,ll j,ll n,ll m)
-{
-    return i>=0&&j>=0&&i<n&&j<m;
-}
-ll sumE(ll n)//sum of even numbers from 1-n
-{
-    return (n * (n + 1));
-}
-ll sumO(ll n)//sum of odd numbers from 1-n
-{
-    long long res=(n + 1) / 2;
-    return res * res;
-}
-ll sum(ll n)//sum of all numbers from 1-n
-{
-    return n*(n+1)/2;
-}
+//i>=0&&j>=0&&i<n&&j<m;
+//(n * (n + 1)) even 1-n
+//pow(((n + 1) / 2),2) odd 1-n
+//n(n+1)/2 sum 1-n
 void solve()
 {
     string s1,s2;
