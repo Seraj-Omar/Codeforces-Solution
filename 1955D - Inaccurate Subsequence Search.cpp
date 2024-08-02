@@ -53,7 +53,55 @@ using namespace std;
 vp directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 void solve()
 {
-    
+    int n,m,k;cin>>n>>m>>k;
+
+    vi a(n),b(m);
+    input(a)
+    input(b)
+
+    multiset<int>s1(all(b)),s2;
+    map<int,int>mp1,mp2;
+    int counter=0;
+
+    loop(0,m)
+    {
+        mp1[b[i]]++;
+        if(s1.find(a[i])!=s1.end())
+        {
+            s1.erase(s1.find(a[i]));
+            s2.insert(a[i]);
+            counter++;
+        }
+        mp2[a[i]]++;
+    }
+    int answer=0;
+    if(counter>=k)
+        answer++;
+
+    int x=0,y=m;
+    while(y<n)
+    {
+        if(mp2[a[x]]<=mp1[a[x]]&&s2.find(a[x])!=s2.end())
+        {
+            s2.erase(s2.find(a[x]));
+            counter--;
+            s1.insert(a[x]);
+        }
+        mp2[a[x]]--;
+        x++;
+
+        if(s1.find(a[y])!=s1.end())
+        {
+            counter++;
+            s1.erase(s1.find(a[y]));
+            s2.insert(a[y]);
+        }
+        mp2[a[y]]++;
+        y++;
+        if(counter>=k)
+            answer++;
+    }
+    cout<<answer<<endd;
     SEEYAH
 }
 int main()
