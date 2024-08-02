@@ -81,7 +81,6 @@ void solve()
         cout<<s<<c<<endd;
     }
     SEEYAH
-    SEEYAH
 }
 int main()
 {
