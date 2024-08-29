@@ -27,17 +27,17 @@ void solve()
         s.insert(x);
     }
 
-    ll first=1;
+    ll MEX=1;
     for (int i = 0; i <= n; ++i)
     {
         if(s.find(i)==s.end())
         {
-            first=i;
+            MEX=i;
             break;
         }
     }
 
-    ll bob=0,alice=first;
+    ll bob=0,alice=MEX;
     while(bob!=-1)
     {
         cout<<alice<<endl;
