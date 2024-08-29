@@ -27,7 +27,7 @@ void solve()
         s.insert(x);
     }
 
-    ll MEX=1;
+    ll MEX;
     for (int i = 0; i <= n; ++i)
     {
         if(s.find(i)==s.end())
