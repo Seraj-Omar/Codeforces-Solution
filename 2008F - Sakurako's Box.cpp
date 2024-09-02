@@ -16,9 +16,7 @@ using o_mset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statist
 //i>=0&&j>=0&&i<n&&j<m; valid
 vector<pair<ll,ll>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 const ll mod=1e9+7;
-//if characters in the even positions are the same,
-// if characters in the odd positions are the same,
-// and the length of the string is even.
+
 ll power(ll a,ll b)
 {
     // a^b=(a^(b/2))^2
@@ -30,7 +28,7 @@ ll power(ll a,ll b)
     ll answer;
     answer= power(a,b/2);
     answer*=answer;
-    answer%=mod; //if he asked for the answer to be mod a number usually 1e9+7
+    answer%=mod;
     if(b%2)
     {
         answer*=a;
