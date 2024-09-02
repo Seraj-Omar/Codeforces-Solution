@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #define SerajOmar    ios_base::sync_with_stdio(false); cin.tie(0), cout.tie(0);
 #define ll  long long
+#define is(x) cout<<((x)?"YES\n":"NO\n");
 using namespace std;
 
 #include <ext/pb_ds/tree_policy.hpp>
@@ -17,34 +18,10 @@ using o_mset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statist
 vector<pair<ll,ll>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 const ll mod=1e9+7;
 
-ll n,x;
-vector<ll>v;
-bool valid(ll mid)
-{
-    ll sum=0;
-    for(auto i:v)
-    {
-        if(i<mid)
-            sum+=mid-i;
-    }
-    return sum<=x;
-}
 void solve()
 {
-    cin>>n>>x;
-    v.resize(n);
-    for(auto& i:v)cin>>i;
-
-    ll left=0,right=1e10,mid;
-    while(left<=right)
-    {
-        mid=(left+right)/2;
-        if(valid(mid))
-            left=mid+1;
-        else
-            right=mid-1;
-    }
-    cout<<left-1<<'\n';
+    string s;cin>>s;
+    is(s[0]=='a'||s[1]=='b'||s[2]=='c')
 }
 int main()
 {
