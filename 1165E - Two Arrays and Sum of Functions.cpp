@@ -16,6 +16,7 @@ using o_mset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statist
 //i>=0&&j>=0&&i<n&&j<m; valid
 vector<pair<ll,ll>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 const ll mod=998244353;
+// Contribution formula: a[i] * (i+1) * (n-i)
 void solve()
 {
     ll n;cin>>n;
