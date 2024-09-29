@@ -16,55 +16,63 @@ using o_mset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statist
 
 //i>=0&&j>=0&&i<n&&j<m; valid
 //vector v(n,vector(m,vector<ll>(k)));//3D vector
-//vector<vector<ll>> v(n,vector<int>(m))//2D vector
+//vector<vector<ll>> v(n,vector<ll>(m))//2D vector
 vector<pair<ll,ll>> di = {{1,1},{-1,-1},{0,0}};
 const ll mod=1e9+7;
 const ll inf=2e18+1;
+
+vector<ll>primes(1e5+1);
 void solve()
 {
     ll n;cin>>n;
+
     vector<ll>v(n);
-    map<ll ,bool>mp;
+    map<ll,bool>mp;
+
     for(auto& i:v)
     {
-        cin >> i;
-        mp[i]=1;
+        cin>>i;
+        mp[i]=true;
     }
 
-    bool f=false;
+    bool done=false;
     std::sort(v.begin(), v.end());
-    ll x=v[0],y;
+    ll x,y;
     for (int i = 0; i < n - 1; ++i)
     {
-        for (int j = 0; j < 31; ++j)
+        for (int j = 0; j <=30 ; ++j)
         {
             if(mp.count(v[i]+(1<<j)))
             {
-                if(j!=30&&mp.count(v[i]+(1<<(j+1))))
+                if(mp.count(v[i]+(1<<(j+1))))
                 {
-                    cout<<"3\n"<<v[i]<<' '<<v[i]+(1<<j)<<' '<<v[i]+(1<<(j+1))<<'\n';
+                    cout<<3<<'\n';
+                    cout<<v[i]<<' '<<v[i]+(1<<j)<<' '<<v[i]+(1<<(j+1))<<'\n';
                     return;
                 }
                 else
                 {
-                    f= true;
                     x=v[i];
                     y=v[i]+(1<<j);
+                    done=true;
                 }
             }
         }
     }
-    if(f)
-        cout<<"2\n"<<x<<' '<<y<<'\n';
+    if(done)
+    {
+        cout<<2<<'\n';
+        cout<<x<<' '<<y<<'\n';
+    }
     else
-        cout<<"1\n"<<x<<'\n';
+        cout<<1<<'\n'<<v[0]<<'\n';
 }
 int main()
 {
     SerajOmar
 //    freopen("input.txt", "r", stdin);
 //    freopen("output.txt", "w", stdout);
-//    cout<<fixed<<setprecision(15);
+//    cout<<fixed<<setprecision(10);
     ll t=1;
 //    cin>>t;
     while (t--){solve();}
