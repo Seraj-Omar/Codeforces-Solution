@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #define SerajOmar    ios_base::sync_with_stdio(false); cin.tie(0), cout.tie(0);
-#define ll  long long
+#define ll           long long int
+#define ld           long double
 using namespace std;
 
 #include <ext/pb_ds/tree_policy.hpp>
@@ -14,64 +15,78 @@ template<typename T>
 using o_mset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;//ordered multiset
 
 //i>=0&&j>=0&&i<n&&j<m; valid
-vector<pair<ll,ll>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+//vector v(n,vector(m,vector<ll>(k)));//3D vector
+//vector<vector<ll>> v(n,vector<ll>(m))//2D vector
+vector<pair<ll,ll>> di = {{1,1},{-1,-1},{0,0}};
 const ll mod=1e9+7;
+const ll inf=2e18+1;
+
+vector<ll>primes(1e5+1);
+
 
 void solve()
 {
     ll n,d,k;cin>>n>>d>>k;
-
     if(n-1<d||(n>=3&&k==1))
     {
-        cout<<"NO\n";
+        cout<<"NO"<<'\n';
         return;
-    }
-    deque<pair<ll,pair<ll,ll>>>g;
-    vector<pair<ll,ll>>ans;
-    ll nodes=d+1;
-    for (int i = 1; i <=nodes/2 ; ++i)
-    {
-        g.push_back({i,{i-1,(i==1)?k-1:k-2}});
-        ans.emplace_back(i,i+1);
-        g.push_back({nodes-i+1,{i-1,(i==nodes)?k-1:k-2}});
-        if((nodes-i+1)!=nodes)
-            ans.emplace_back(nodes-i+1,nodes-i+2);
-    }
-    if(nodes%2)
-    {
-        g.push_back({nodes / 2 + 1, {nodes / 2, k - 2}});
-        ans.emplace_back(nodes / 2 + 1,nodes / 2 + 2);
-    }
-    if(nodes==n)
-    {
-        cout<<"YES"<<'\n';
-        std::sort(ans.begin(), ans.end());
-        for (auto i: ans)
-            cout << i.first << ' ' << i.second << '\n';
-        return;
-    }
-    while(!g.empty())
-    {
-        auto& c=g.front();
-        if(!c.second.second||!c.second.first) {
-            g.pop_front();
-            continue;
-        }
-        c.second.second--;
-        nodes++;
-        g.push_back({nodes,{c.second.first-1,k-1}});
-        ans.emplace_back(c.first,nodes);
-        if(nodes==n)
-            break;
     }
 
-    if(nodes!=n)
-        cout<<"NO"<<'\n';
-    else
+    deque<pair<ll,pair<ll,ll>>>v;
+    vector<pair<ll,ll>>ans;
+
+    ll nd=d+1;
+    for (int i = 1; i <=nd/2 ; ++i)
+    {
+        v.push_back({i,{i-1,((i==1)?k-1:k-2)}});
+        v.push_back({nd-i+1,{i-1,((i==nd)?k-1:k-2)}});
+
+        ans.push_back({i,i+1});
+        if(nd-i+1!=nd)
+            ans.push_back({nd-i+1,nd-i+2});
+    }
+
+    if(nd%2)
+    {
+        v.push_back({nd/2+1,{nd/2,k-2}});
+        ans.push_back({nd/2+1,nd/2+2});
+    }
+
+    if(nd==n)
     {
         cout<<"YES"<<'\n';
         for(auto i:ans)
             cout<<i.first<<' '<<i.second<<'\n';
+        return;
+    }
+
+    while(!v.empty())
+    {
+        auto& node=v.front();
+
+        if(!node.second.first||!node.second.second)
+        {
+            v.pop_front();
+            continue;
+        }
+
+        node.second.second--;
+        nd++;
+
+        v.push_back({nd,{node.second.first-1,k-1}});
+        ans.push_back({node.first,nd});
+        if(nd==n)
+            break;
+    }
+
+    if(nd!=n)
+        cout<<"NO"<<'\n';
+    else
+    {
+        cout<<"YES"<<'\n';
+        for(auto j:ans)
+            cout<<j.first<<' '<<j.second<<'\n';
     }
 }
 int main()
@@ -79,10 +94,9 @@ int main()
     SerajOmar
 //    freopen("input.txt", "r", stdin);
 //    freopen("output.txt", "w", stdout);
-//    cout<<fixed<<setprecision(9);
-
-    ll t=1;
+    cout<<fixed<<setprecision(15);
+    ll t = 1;
 //    cin>>t;
-    while (t--){solve();}
+    while (t--) { solve(); }
     return 0;
 }
