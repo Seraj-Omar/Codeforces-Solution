@@ -21,25 +21,34 @@ vector<pair<ll,ll>> di = {{1,1},{-1,-1},{0,0}};
 const ll mod=1e9+7;
 const ll inf=2e18+1;
 
-vector<ll>primes(1e5+1);
-
 void solve()
 {
-    ll n;cin>>n;
+    ll n,m;cin>>n>>m;
 
-    ll ans=0;
-//  2*3+3*4=18
-    for (int i = 2; i <n ; ++i) {
-        ans+=i*(i+1);
+    vector<ll>v(n);
+    for(auto& i:v)
+        cin>>i;
+    std::sort(v.begin(), v.end());
+
+    ll g=0;
+    for (int i = 1; i <n ; ++i)
+    {
+        g= gcd(g,v[i]-v[0]);
     }
-    cout<<ans<<'\n';
+
+    while(m--)
+    {
+        ll x;cin>>x;
+        cout<<gcd(g,x+v[0])<<' ';
+    }
+    cout<<'\n';
 }
 int main()
 {
     SerajOmar
 //    freopen("input.txt", "r", stdin);
 //    freopen("output.txt", "w", stdout);
-    cout<<fixed<<setprecision(15);
+//    cout<<fixed<<setprecision(15);
     ll t = 1;
 //    cin>>t;
     while (t--) { solve(); }
